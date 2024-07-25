@@ -7,9 +7,6 @@ from dotenv import load_dotenv
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
 
-aws_access_key = safequote(os.getenv("KEY"))
-aws_secret_key = safequote(os.getenv("SECRET"))
-
 app = Celery("project")
 app.conf.enable_utc = False
 app.conf.update(timezone="Asia/Kolkata")
@@ -30,14 +27,12 @@ app.conf.update(
 )
 
 app.conf.update(
-    broker_url=f"sqs://{aws_access_key}:{aws_secret_key}@", 
+    broker_url=f"sqs://", 
     broker_transport_options = {
         'region': 'us-east-2',
         'predefined_queues': {
             SQS_QUEUE: {
                 'url': 'https://sqs.us-east-2.amazonaws.com/931637813668/sqs_queue',
-                'access_key_id': os.getenv("KEY"),
-                'secret_access_key': os.getenv("SECRET")
             }
         }
     }
