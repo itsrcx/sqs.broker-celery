@@ -31,6 +31,8 @@ app.conf.update(
         'predefined_queues': {
             SQS_QUEUE: {
                 'url': 'https://sqs.us-east-2.amazonaws.com/931637813668/sqs_queue',
+                'access_key_id': os.getenv("KEY"),
+                'secret_access_key': os.getenv("SECRET")
             }
         },
     }
