@@ -33,7 +33,6 @@ app.conf.update(
                 'url': 'https://sqs.us-east-2.amazonaws.com/931637813668/sqs_queue',
             }
         },
-    'sts_role_arn': 'arn:aws:iam::931637813668:role/sqs-access-celery'
     }
 )
 
