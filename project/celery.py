@@ -1,8 +1,14 @@
 import os
 from django.conf import settings
 from celery import Celery
+from kombu.utils.url import safequote
 
 from dotenv import load_dotenv
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+
+aws_access_key = safequote(os.getenv("KEY"))
+aws_secret_key = safequote(os.getenv("SECRET"))
 
 app = Celery("project")
 app.conf.enable_utc = False
@@ -23,9 +29,8 @@ app.conf.update(
     task_default_queue=SQS_QUEUE,
 )
 
-app.config_from_object(os.getenv("DJANGO_SETTINGS_MODULE")) 
 app.conf.update(
-    broker_url=f"sqs://", 
+    broker_url=f"sqs://{aws_access_key}:{aws_secret_key}@", 
     broker_transport_options = {
         'region': 'us-east-2',
         'predefined_queues': {
