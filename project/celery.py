@@ -35,6 +35,7 @@ app.conf.update(
                 'secret_access_key': os.getenv("SECRET")
             }
         },
+    'sts_role_arn': 'arn:aws:iam::931637813668:role/sqs-access-celery'
     }
 )
 
