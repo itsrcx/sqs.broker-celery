@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+import ssl
 
 from dotenv import load_dotenv
 
@@ -112,3 +114,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+broker_url = f'sqs://'
+broker_use_ssl = {"ssl_cert_reqs": ssl.CERT_REQUIRED}
+accept_content = ["application/json"]
+result_serializer = "json"
+task_serializer = "json"
+timezone = "Asia/Kolkata"
+result_backend = "django-db"
+task_always_eager = os.getenv("task_always_eager", False) == "TRUE"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
