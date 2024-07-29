@@ -121,6 +121,6 @@ accept_content = ["application/json"]
 result_serializer = "json"
 task_serializer = "json"
 timezone = "Asia/Kolkata"
-result_backend = "django-db"
+# result_backend = "django-db"
 task_always_eager = os.getenv("task_always_eager", False) == "TRUE"
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
