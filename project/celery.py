@@ -27,7 +27,6 @@ app.conf.update(
 )
 
 app.conf.update(
-    broker_url=f"sqs://", 
     broker_transport_options = {
         'region': 'us-east-2',
         'predefined_queues': {
