@@ -29,7 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bg_tasks'
+    'bg_tasks',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
